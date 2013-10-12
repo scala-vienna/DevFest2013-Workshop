@@ -1,0 +1,192 @@
+<html>
+<head>
+    <title>From Java to Scala</title>
+</head>
+<body>
+<div>
+	<style>
+    	.todo {
+    		background: orange;
+			color: #FF0000;
+			letter-spacing: 0.12em;
+			border-radius: 2px;
+			border: 1px solid #FF0000;
+			padding: 0 4px;
+			margin: 0 3px;
+			white-space: nowrap;
+			font-weight: bold;
+    	}
+    	.todo:before {
+    		content: 'TODO:';
+    	}
+
+    	.continue {
+    		background: #FFFFFF;
+			color: #E25758;
+			letter-spacing: 0.12em;
+			border-radius: 2px;
+			border: 1px solid #E25758;
+			padding: 0 4px;
+			margin: 0 auto;
+			white-space: nowrap;
+			font-size: 13px;
+			display: block;
+    	}
+    	.continue:after {
+    		content: " \E75E";
+  			font: 15px icons;
+    	}
+
+    	.button {
+    		background: #FFFFFF;
+			color: #246C7E;
+			letter-spacing: 0.12em;
+			border-radius: 2px;
+			border: 1px solid #246C7E;
+			padding: 0 4px;
+			margin: 0 3px;
+			white-space: nowrap;
+    	}
+
+    	.tab {
+    		background: #FFFFFF;
+			color: #246C7E;
+			letter-spacing: 0.12em;
+			border-radius: 2px 2px 0 0;
+			border: 1px solid #246C7E;
+			border-bottom: none;
+			padding: 0 4px;
+			margin: 0 3px;
+			white-space: nowrap;    		
+    	}
+    </style>
+
+    <h2>Who we are</h2>
+
+    <p>
+        <div style="float:left"><a href="http://scala-vienna.org/"><img src="tutorial/vienna-scala-user-group-logo_150px.png"></a><br></div>
+        <div style="margin-left:170px">
+        	<h3><a href="http://scala-vienna.org/">Scala Vienna User Group</a></h3>is a group of people who are interested in functional programming language Scala.<br><br>
+        	<a href="http://www.meetup.com/scala-vienna/">Meetup</a> is a place where we plan our meetings.
+        	<br/>
+        	<a href="http://www.github.com/scala-vienna/">GitHub</a> is a place where we code.
+        	<br/>
+        	<a href="http://groups.google.com/group/scala-vienna">Google Groups</a> is a place where we chat.
+        </div>
+    </p>
+    <p>
+    	<button class="continue" onclick="$('.next').click()">Getting Started</button>
+    </p>
+</div>
+<div>
+    <h2>Getting Started</h2>
+
+    <p>
+        All source code can be found at:<br><a href="https://github.com/scala-vienna/devfest2013">https://github.com/scala-vienna/devfest2013</a>.
+    </p>
+    <p>
+    	Just clone it via:<br><code>&gt; git clone https://github.com/scala-vienna/devfest2013</code>
+    </p>
+    <p>
+    	Project uses <a href="http://typesafe.com/activator">Typesafe Activator</a> template, thus you can develop in the web browser or any other IDE which Activator supports. We will be developing in browser during this workshop, but if you are interested to code in your favourite IDE, please refer to Activator documentation about the topic. 
+
+    	<h3>Develop in Web Browser</h3>
+    	To develop in web browser just start following script from your cloned project directory:<br>
+    	<code>&gt; ./activator ui</code><br><br>
+    	On Windows please start:<br>
+    	<code>&gt; ./activator.bat ui</code><br><br>
+    	This may take a little while Activator to start up and dovnload all the dependencies, so please be patient. After a while Actiator will open your favourite browser automaticaly.<br><br>
+
+    	If the Activator doesn't open anything please refer to:<br><a href="http://localhost:8888/app/DevFest2013-Workshop/">http://localhost:8888/app/DevFest2013-Workshop</a><br><br>
+
+    	We wish you a happy coding...
+    </p>
+    <p>
+    	<button class="continue" onclick="$('.next').click()">Project Structure and Code Organization</button>
+    </p>
+</div>
+<div>
+    <h2>Project Structure and Code Organization</h2>
+
+    <p>
+        All source code needed for our workshop can be found in:
+        <a href="#code/src" class="shortcut">/src</a>        
+    </p>
+    <p>
+    	Production code can be found in:
+    	<a href="#code/src/main/scala" class="shortcut">/src/main/scala</a>
+    </p>
+    <p>
+    	Test code can be found in:
+    	<a href="#code/src/test/scala" class="shortcut">/src/test/scala</a>
+    </p>
+    <p>
+    	All the other directories within the project are irrelevant for the purpose of the workshop. They serve to build system and testing framework tasks.
+    </p>
+    <p>
+    	Let's see the first bits of <a href="#code/src/main/scala/Hello.scala" class="shortcut">scala code</a> and <a href="#code/src/test/scala/HelloSpec.scala" class="shortcut">unit test in scala</a>
+    </p>
+    <p>
+    	Feel free to experiment and edit the source code and relevant unit tests. After clicking the <span class="button">Save</span> button. You can see the result of the changes either in the <span class="tab">Run</span> or <span class="tab">Test</span> tab.
+    </p>
+    <p>
+    	<button class="continue" onclick="$('.next').click()">Step 1: Classes and Objects</button>
+    </p>
+</div>
+<div>
+	<h2>1. Classes and Objects</h2>
+	<p>
+		<span class="todo">Write something</span>
+	</p>
+	<p>
+    	<button class="continue" onclick="$('.next').click()">Step 2: Functions</button>
+    </p>
+</div>
+<div>
+	<h2>2. Functions</h2>
+	<p>
+		<span class="todo">Write something</span>
+	</p>
+	<p>
+    	<button class="continue" onclick="$('.next').click()">Step 3: Null vs Option</button>
+    </p>
+</div>
+<div>
+	<h2>3. Null vs Option</h2>
+	<p>
+		<span class="todo">Write something</span>
+	</p>
+	<p>
+    	<button class="continue" onclick="$('.next').click()">Step 4: Pattern Matching</button>
+    </p>
+</div>
+<div>
+	<h2>4. Pattern Matching</h2>
+	<p>
+		<span class="todo">Write something</span>
+	</p>
+	<p>
+    	<button class="continue" onclick="$('.next').click()">Step 5: Collections</button>
+    </p>
+</div>
+<div>
+	<h2>5. Collections</h2>
+	<p>
+		<span class="todo">Write something</span>
+	</p>
+	<p>
+    	<button class="continue" onclick="$('.next').click()">Step 6: <span class="todo">Maybe something more...</span></button>
+    </p>
+</div>
+<div>
+	<h2>EOF</h2>
+	<p>
+		Thank you for participating on this workshop!
+	</p>
+	<p>
+		It will be pleasure to meet anyone of you in our next meetup, check out for upcoming meet-ups on our website.
+	</p>
+	<div style="text-align: center"><a href="http://scala-vienna.org/"><img src="tutorial/vienna-scala-user-group-logo_75px.png"><br>http://scala-vienna.org</a></div>
+</div>
+</body>
+</html>
