@@ -1,5 +1,7 @@
 import org.scalatest.FunSuite
 
+
+
 class NullExerciseSuite extends FunSuite {
   /**
    * This is our first exercise. We will use ScalaTest library
@@ -47,6 +49,7 @@ class NullExerciseSuite extends FunSuite {
   case class User(
                    id: Int,
                    name: String,
+                   age: Int,
                    gender: Option[String]
                    )
 
@@ -56,10 +59,10 @@ class NullExerciseSuite extends FunSuite {
    * and "null" for squirrel
    */
   test("None is null and != null is Some") {
-    val radim :Option[User] = Some(User(1, "Radim", ???))
+    val radim: Option[User] = Some(User(1, "Radim", 32, ???))
     assert(radim.get.gender.isDefined)
 
-    val squirrel :Option[User] = Some(User(1, "Ice Age", ???))
+    val squirrel: Option[User] = Some(User(1, "Ice Age", 100, ???))
     assert(squirrel.isEmpty)
   }
 
@@ -73,9 +76,15 @@ class NullExerciseSuite extends FunSuite {
    */
   object UserRepository {
     private val users = Map(
-      1 -> User(1, "Radim",  Some("male")),
-      2 -> User(2, "Ice Age Squirrel",  None))
+      1 -> User(1, "Radim", 32, Some("male")),
+      2 -> User(2, "Ice Age Squirrel", 100, None),
+      3 -> User(3, "Bill", 55, Some("male")),
+      5 -> User(5, "Petra", 25, Some("woman")),
+      4 -> User(4, "David", 45, Some("male"))
+    )
+
     def findById(id: Int): Option[User] = users.get(id)
+
     def findAll = users.values
   }
 
@@ -93,9 +102,34 @@ class NullExerciseSuite extends FunSuite {
       assert("Radim" === user1.get.name)
     }
     val user2 = UserRepository.findById(2)
-    assert ("Not specified" === ???)
+    assert("Gender not specified" === ???)
   }
 
-  //TODO if time left
-  //TODO Option in for comprehensions
+  /**
+   * Here some examples with filtering.
+   */
+  test("filtering should return None or Some") {
+    assert(None == UserRepository.findById(1).filter(_.age > 40))
+   val id = UserRepository.findById(2)
+    val some = Some(id)
+    assert(some == UserRepository.findById(2).filter(_.age > 30))
+
+    // there isn't any user with id 100
+    assert(None ==UserRepository.findById(100).filter(_.age > 1))
+  }
+
+  /**
+   * And final example. Using for comprehensions.
+   *
+   * Tip: use Console.out.println() and genders.mkString
+   */
+  test("extract gender types from repository") {
+    val genders = for {
+      user <- UserRepository.findAll
+      gender <- user.gender
+    } yield gender
+
+
+    assert(??? == genders.size)
+  }
 }
