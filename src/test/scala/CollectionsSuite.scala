@@ -180,8 +180,8 @@ class CollectionsSuite extends FunSuite {
     }
     val bases = domains.map(d => ???)
 
-    assert(List("batcave.com", "solitude.com", "grayscull.com") === domains)
-    assert(List("batcave", "solitude", "grayscull") === bases)
+    assert(List("batcave.com", "solitude.com", "grayskull.com") === domains)
+    assert(List("batcave", "solitude", "grayskull") === bases)
   }
 
   /**
@@ -199,6 +199,8 @@ class CollectionsSuite extends FunSuite {
    *   List("abc","ab","a","abcde","abcd").sortBy(_.length)
    * Output:
    *   List(a, ab, abc, abcd, abcde) 
+   *   
+   * HINT: use "string".toInt to parse to an Integer; use split
    * */
   test("sorting programming languages") {
     val langs = List(
