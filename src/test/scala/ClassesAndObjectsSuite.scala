@@ -2,7 +2,7 @@ import org.scalatest.FunSuite
 import devfest.????
 
 /**
- * Workshop exercise showing classes, objects and traits
+ * Workshop exercise showing classes and objects
  */
 class ClassesAndObjectsSuite extends FunSuite {
 
