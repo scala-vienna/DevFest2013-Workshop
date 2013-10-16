@@ -6,7 +6,7 @@ class CollectionsSuite extends FunSuite {
    * What do you thing an empty list is written?
    */
   test("empty list") {
-    val emptyList = List(???)
+    val emptyList = List(???) // fix this
     assert(emptyList.isEmpty, "List should be empty")
   }
 
@@ -16,7 +16,7 @@ class CollectionsSuite extends FunSuite {
    * Can you correct the list so that it satisfies the conditions?
    */
   test("should contain numbers from 1 to 3") {
-    val list = List(0)
+    val list = List(0) // fix
 
     assert(list.size === 3, "List should have 3 elements")
     assert(list.head === 1, "First element should be 1")
@@ -36,9 +36,11 @@ class CollectionsSuite extends FunSuite {
    */
   test("accessing elements") {
     val flavors = List("Banana", "Strawberry", "Chocolate", "Vanilla")
+    val thirdElement = ???
+    val firstElement = ??? // bonus: use specific method
 
-    assert("Chocolate" === ???, "Write an expression to get Chocolate")
-    assert("Banana" === ???, "Write an expression to get Banana")
+    assert("Chocolate" === thirdElement, "Write an expression to get Chocolate")
+    assert("Banana" === firstElement, "Write an expression to get Banana")
   }
 
   /**
@@ -89,7 +91,7 @@ class CollectionsSuite extends FunSuite {
     val sax = List("alt sax", "tenor sax", "baritone sax")
     val brass = List("trumpet", "trombone")
     val rhythm = List("piano", "bass", "guitar", "drums")
-    val jazzOrchestra = List() // replace this
+    val jazzOrchestra = List() // fix this
 
     // Note that the original collections are not changed
     assert(sax.size === 3, "Should contain 3 sax types (sopran sax is rarely used)")
@@ -125,9 +127,9 @@ class CollectionsSuite extends FunSuite {
    */
   test("introduction to sets") {
     val years = Set(2010, 2011, 2010, 2012, 2011, 2013) // ;-)
-    val twoYeasInTheFuture = Set(2014) + ??? // implement
-    val yearsUpTo2015 = Set(0) // implement
-    val without2015 = Set(0) // implement
+    val twoYeasInTheFuture = Set(2014) + ??? // fix
+    val yearsUpTo2015 = Set(0) // fix
+    val without2015 = Set(0) // fix
     val someOddYears = Set(2010, 2012, 2014, 2016, 2018)
     val oddYearsUpTo2015 = Set(0) // "intersect" of "someOddYears" and "yearsUpTo2015"
 
@@ -158,7 +160,7 @@ class CollectionsSuite extends FunSuite {
    */
   test("filtering a range for even numbers") {
     val numbers = (1 to 8)
-    val evenNrs = numbers.filter(n => n % 3 == 0)
+    val evenNrs = numbers.filter(n => n % 3 == 0) // fix
 
     assert(evenNrs.size === 4, "Should find 4 even numbers")
     assert(evenNrs.contains(1), "Should contain 1")
@@ -177,7 +179,7 @@ class CollectionsSuite extends FunSuite {
    */
   test("filtering numbers greater than 4") {
     val numbers = (1 until 8)
-    val evenNrs = numbers.filter(_ > 44)
+    val evenNrs = numbers.filter(_ > 44) // fix
 
     assert(numbers.contains(8) === false, "Should not contain 8 (note the *until*)")
 
@@ -203,7 +205,7 @@ class CollectionsSuite extends FunSuite {
         "Roland",
         "Raphael",
         "Ernest")
-    val withE = names.filter(???)
+    val withE = names.filter(???) // fix
 
     assert(withE.size === 3)
     assert(withE.head === "Matthew", "First name should be Matthew")
@@ -261,9 +263,9 @@ class CollectionsSuite extends FunSuite {
         "superman@solitude.com",
         "heman@grayskull.com")
     val domains = emails.map { e =>
-      ???
+      ??? // fix
     }
-    val bases = domains.map(d => ???)
+    val bases = domains.map(d => ???) // fix
 
     assert(List("batcave.com", "solitude.com", "grayskull.com") === domains)
     assert(List("batcave", "solitude", "grayskull") === bases)
@@ -276,9 +278,9 @@ class CollectionsSuite extends FunSuite {
    */
   test("simple sorting") {
     val numbers = List(5, 2, 7, 1, 3)
-    val sortedNumbers = ???
+    val sortedNumbers = ??? // fix (sort them!)
     val greekLetters = List("gamma", "beta", "omega", "alpha")
-    val sortedGreekLetters = List[String]()
+    val sortedGreekLetters = greekLetters // sort them!
 
     assert(List(1, 2, 3, 5, 7) === sortedNumbers, "Numbers should be sorted")
     assert("alpha" === sortedGreekLetters(0), "Alpha should be first")
@@ -303,7 +305,9 @@ class CollectionsSuite extends FunSuite {
    * their year of appearance?
    *
    * HINT: use "string".toInt to parse to an Integer;
-   * you might also have to use "split" to get the year
+   * HINT: to get the year, you can split by the space
+   *   or use takeRight(n) which will give you the last
+   *   "n" elements of a collection (String is a collection) 
    */
   test("sorting programming languages") {
     val langs = List(
@@ -311,11 +315,13 @@ class CollectionsSuite extends FunSuite {
       "Lisp: 1958",
       "Java: 1995",
       "Haskell: 1990",
-      "Smalltalk: 1972 ",
+      "Smalltalk: 1972",
       "Ruby: 1995",
       "Erlang: 1986",
       "C#: 2000")
-    val sorted = List(???)
+
+    val sorted = List(???) // fix, use sortBy by getting the year
+    
     assert("Lisp: 1958" === sorted.head, "In the beginning, it was Lisp")
     assert("Scala: 2003" === sorted(7), "The youngest language of the lot is Scala")
 
@@ -341,13 +347,11 @@ class CollectionsSuite extends FunSuite {
    */
   test("reducing") {
     def strJoin(strings: List[String], joiner: String): String = {
-      ???
+      ??? // implement
     }
+    
     assert(strJoin(List("rock", "paper", "scissors"), joiner = "/") === "rock/paper/scissors")
     assert(strJoin(List("Hello", "world"), joiner = " ") === "Hello world")
-
-    // Bonus: why do you think this works? Discuss (30 secs.)
-    assert(strJoin(List("I am unique"), joiner = "-") === "I am unique")
   }
 
   /**
@@ -394,12 +398,12 @@ class CollectionsSuite extends FunSuite {
       "pizza" -> 7.50,
       "beer" -> 2.20,
       "cafe" -> 3.40)
-    val pubAndStreet = atThePub // should involve "ice-cream" costing 2.30
-    val pubAndStreetCost = -1 // don't add manually! (you're a lazy developer, remember)
 
+    val pubAndStreet = atThePub // add "ice-cream" costing 2.30
+    val pubAndStreetCost = -1 // don't add manually!
     val consumedItemsWithE = List() // all things consumed in the pub and the street
 
-    // Do not add ice-cream to "atThePub". Note that this map is immutable.
+    // Adding "ice-cream" did not modify the original map, since it's immutable
     assert(atThePub.get("ice-cream") === None, "Ice-cream was not taken in the pub!")
 
     assert(pubAndStreet.size === 4, "Consumed items should be 4")
@@ -408,8 +412,8 @@ class CollectionsSuite extends FunSuite {
 
     assert(consumedItemsWithE.toSet === Set("beer", "cafe", "ice-cream"))
 
-    // Extra bonus: find the most expensive price 
-    // HINT: use reduce and if
+    // Extra bonus: find the highest price 
+    // HINT: use a combination of "reduce" and "if"
     def mostExpensivePrice(items: Map[String, Double]): Double = ???
     //assert(mostExpensivePrice(pubAndStreet) === 7.50)
   }
