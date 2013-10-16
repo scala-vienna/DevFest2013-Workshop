@@ -1,5 +1,5 @@
+import devfest.{***, ???}
 import org.scalatest.FunSuite
-
 
 
 class NullExerciseSuite extends FunSuite {
@@ -109,13 +109,11 @@ class NullExerciseSuite extends FunSuite {
    * Here some examples with filtering.
    */
   test("filtering should return None or Some") {
-    assert(None == UserRepository.findById(1).filter(_.age > 40))
-   val id = UserRepository.findById(2)
-    val some = Some(id)
-    assert(some == UserRepository.findById(2).filter(_.age > 30))
-
+    assert(??? == UserRepository.findById(1).filter(_.age > 40))
+    val filter = UserRepository.findById(2).filter(_.age > 30)
+    assert(filter.isInstanceOf[***])
     // there isn't any user with id 100
-    assert(None ==UserRepository.findById(100).filter(_.age > 1))
+    assert(??? ==UserRepository.findById(100).filter(_.age > 1))
   }
 
   /**
