@@ -65,10 +65,10 @@ class PatMatSuite extends FunSuite {
   case class Address(street: String, city: String, country: String)
 
   test("matchType") {
-    assert(matchType("Hello").equals("String 'Hello'"))
-    assert(matchType(User("Joe", "joe@example.org", 35)).equals("User with name Joe"))
-    assert(matchType(Address("Some Street", "Vienna", "Austria")).equals("Address with city Vienna"))
-    assert(matchType(7.5).equals("unknown"))
+    assert(matchType("Hello") === "String 'Hello'")
+    assert(matchType(User("Joe", "joe@example.org", 35)) === "User with name Joe")
+    assert(matchType(Address("Some Street", "Vienna", "Austria")) === "Address with city Vienna")
+    assert(matchType(7.5) === "unknown")
   }
 
   /**
@@ -96,8 +96,8 @@ class PatMatSuite extends FunSuite {
   case class Add(e1: Expr, e2: Expr) extends Expr
 
   test("exercise 4") {
-    assert(Num(4).eval == 4)
-    assert(Add(Num(2), Num(5)).eval == 7)
+    assert(Num(4).eval === 4)
+    assert(Add(Num(2), Num(5)).eval === 7)
     //assert(Sub(Num(10), Num(7)).eval == 3)
   }
 
@@ -114,7 +114,7 @@ class PatMatSuite extends FunSuite {
   }
 
   test("exercise 5") {
-    assert(advancedMatching(User("jim", "x", 0)).equals("This is Jim"))
+    assert(advancedMatching(User("jim", "x", 0)) === "This is Jim")
   }
 
 }
