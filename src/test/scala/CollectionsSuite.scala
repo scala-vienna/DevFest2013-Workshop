@@ -42,19 +42,32 @@ class CollectionsSuite extends FunSuite {
   }
 
   /**
+   * Immutable List: adding elements.
+   *
+   * NOTE: the default implementation of List is IMMUTABLE:
+   *   adding/removing an element will give you a *new* collection.
+   *
    * You can add an element in two ways: appending and pre-pending.
+   *
    * Appending: List(1,2,3) :+ 4  // output: List(1,2,3,4)
    * Prepending: 4 :: List(1,2,3) // output: List(4,1,2,3)
    *
-   * NOTE: the default implementation of List is *immutable*; adding
-   * an element will give you a new collection.
+   * Alternate way to prepend: 4 +: List(1,2,3)
+   *
+   * The colon ":" points to the position the new element will
+   * be added to the list.
    *
    * Complete the love-triangle to add drama to the story.
    */
-  test("appending an element") {
+  test("appending an element to an immutable list") {
     val couple = List("Scott Summers", "Jean Grey")
-    val loganLast = couple // append "Logan" to the collection
-    val loganFirst = couple // prepend "Logan" to the collection
+    val loganLast = couple // append "Logan" to the "couple" collection
+    val loganFirst = couple // prepend "Logan" to the "couple" collection
+
+    // Note that original "couple" collection was not modified!
+    assert(couple.size === 2, "The original couple should still contain 2 members")
+
+    // Instead, *new* collections were returned
 
     assert(loganLast.size === 3, "A love triangle should have 3 persons")
     assert(loganLast(2) === "Logan", "Should end with Logan")
@@ -64,17 +77,87 @@ class CollectionsSuite extends FunSuite {
   }
 
   /**
+   * Immutable List: adding two Lists together
+   *
+   * You can add collections together with "++"
+   * Example: List(1,2) ++ List(3,4) // output: List(1,2,3,4)
+   *
+   * Can you add these collections to form a proper jazz orchestra?
+   *
+   */
+  test("adding two lists") {
+    val sax = List("alt sax", "tenor sax", "baritone sax")
+    val brass = List("trumpet", "trombone")
+    val rhythm = List("piano", "bass", "guitar", "drums")
+    val jazzOrchestra = List() // replace this
+
+    // Note that the original collections are not changed
+    assert(sax.size === 3, "Should contain 3 sax types (sopran sax is rarely used)")
+    assert(brass.size === 2, "Trumpet and trombone")
+    assert(rhythm.size === 4, "The rhythm section should contain 4 members")
+
+    // The resulting collection is a new one
+    assert(jazzOrchestra.size === 9, "The orchestra should have 9 types of instruments")
+  }
+
+  /**
+   * Immutable Sets.
+   *
+   * In contrast to Lists, Sets hold *unique* values.
+   *
+   * The default implementation of Set is IMMUTABLE.
+   *
+   * Many of the same operations that you learned for lists also
+   * are available to Sets.
+   *
+   * There is one difference: when adding an element, you use "+"
+   * instead of "+:" or ":+". This is because there is no "position
+   * to add to" (as we defined above).
+   *
+   * Can you complete the years to satisfy the conditions?
+   *
+   * You will be adding one element with "+" and two sets with "++"
+   * You can remove one element with "-"
+   * You can remove many elements with "--"
+   * There is "intersect(otherSet)" to calculate the intersection between
+   * two sets.
+   *
+   */
+  test("introduction to sets") {
+    val years = Set(2010, 2011, 2010, 2012, 2011, 2013) // ;-)
+    val twoYeasInTheFuture = Set(2014) + ??? // implement
+    val yearsUpTo2015 = Set(0) // implement
+    val without2015 = Set(0) // implement
+    val someOddYears = Set(2010, 2012, 2014, 2016, 2018)
+    val oddYearsUpTo2015 = Set(0) // "intersect" of "someOddYears" and "yearsUpTo2015"
+
+    // Note that original Sets are immutable (not changed)
+    assert(years.size === 4, "Original years should be 4")
+
+    // Assertions on new Sets
+    assert(yearsUpTo2015.size === 6)
+    assert(yearsUpTo2015.contains(2015), "Should include the year 2015")
+    assert(!without2015.contains(2015), "Should NOT include the year 2015")
+    assert(oddYearsUpTo2015.size === 3, "Should have 3 elements")
+  }
+
+  /**
    * Filtering is done by passing an anonymous function which
    * takes as a parameter an element of the same type as the list.
    *
    * NOTE: the type declaration in the closure is automatically
    * type-inferenced. No need to declare types.
    *
-   * Here we filter all even numbers.
-   * Can you find the bugs?
+   * We introduce Range(s), just for illustration purposes.
+   * Ranges can be instantiated like this:
+   *   (1 to 10)     // includes 10
+   *   (1 until 10)  // excluding 10
+   *
+   * Here we filter all EVEN numbers.
+   * Can you find the bugs in our filter?
    */
-  test("filtering even numbers") {
-    val numbers = List(1, 2, 3, 4, 5, 6, 7, 8)
+  test("filtering a range for even numbers") {
+    val numbers = (1 to 8)
     val evenNrs = numbers.filter(n => n % 3 == 0)
 
     assert(evenNrs.size === 4, "Should find 4 even numbers")
@@ -93,8 +176,10 @@ class CollectionsSuite extends FunSuite {
    * Can you find the bug?
    */
   test("filtering numbers greater than 4") {
-    val numbers = List(1, 2, 3, 4, 5, 6, 7)
+    val numbers = (1 until 8)
     val evenNrs = numbers.filter(_ > 44)
+
+    assert(numbers.contains(8) === false, "Should not contain 8 (note the *until*)")
 
     assert(evenNrs.size === 3, "Should find 3 numbers")
     assert(evenNrs.contains(5), "Should contain 5")
@@ -185,23 +270,41 @@ class CollectionsSuite extends FunSuite {
   }
 
   /**
-   * Let's revise some programming language history.
-   * 
-   * Can you sort these according to their year of
-   * appearance?
-   * 
-   * You can use the method "sortBy" on a collection.
+   * You can sort a collection with the "sorted" method.
+   * This works for collections where Scala knows how to sort them.
+   * (note that you can not sort Sets)
+   */
+  test("simple sorting") {
+    val numbers = List(5, 2, 7, 1, 3)
+    val sortedNumbers = ???
+    val greekLetters = List("gamma", "beta", "omega", "alpha")
+    val sortedGreekLetters = List[String]()
+
+    assert(List(1, 2, 3, 5, 7) === sortedNumbers, "Numbers should be sorted")
+    assert("alpha" === sortedGreekLetters(0), "Alpha should be first")
+    assert("omega" === sortedGreekLetters(3), "Omega should be last")
+  }
+
+  /**
+   * Another way to sort a collection is through the method "sortBy".
+   *
    * The parameter for sortBy should be a closure that returns
    * a numerical value. The collection will be sorted ascendingly
    * using that numerical value.
-   * 
+   *
    * Example:
    *   List("abc","ab","a","abcde","abcd").sortBy(_.length)
    * Output:
-   *   List(a, ab, abc, abcd, abcde) 
-   *   
-   * HINT: use "string".toInt to parse to an Integer; use split
-   * */
+   *   List(a, ab, abc, abcd, abcde)
+   *
+   * (Remember that "_" is the "wildcard"-argument)
+   *
+   * Can you sort these programing languages according to
+   * their year of appearance?
+   *
+   * HINT: use "string".toInt to parse to an Integer;
+   * you might also have to use "split" to get the year
+   */
   test("sorting programming languages") {
     val langs = List(
       "Scala: 2003",
@@ -215,16 +318,100 @@ class CollectionsSuite extends FunSuite {
     val sorted = List(???)
     assert("Lisp: 1958" === sorted.head, "In the beginning, it was Lisp")
     assert("Scala: 2003" === sorted(7), "The youngest language of the lot is Scala")
-    
-    // Bonus, use "map" to extract the years, and "sorted" on them 
+
+    // Bonus: use "map" to extract the years, and "sorted" to sort them 
     // val sortedYears = ???
     // assert(List(1958, 1972, 1986, 1990, 1995, 1995, 2000, 2003) === sortedYears)
   }
 
-  test("reducing") { pending }
+  /**
+   * Reducing a collection is to apply one operation to all
+   * its members to obtain a final result.
+   *
+   * A typical example is to sum all numbers.
+   *
+   * For example:
+   *   List(1,2,3,4).reduce( (n1, n2) => n1+n2 )
+   * Or using two wildcard-arguments:
+   *   List(1,2,3,4).reduce(_+_)
+   *
+   * Implement your own "strJoin" function using "reduce".
+   * It becomes a list of string and a "joiner" string.
+   *
+   */
+  test("reducing") {
+    def strJoin(strings: List[String], joiner: String): String = {
+      ???
+    }
+    assert(strJoin(List("rock", "paper", "scissors"), joiner = "/") === "rock/paper/scissors")
+    assert(strJoin(List("Hello", "world"), joiner = " ") === "Hello world")
 
-  test("grouping") { pending }
+    // Bonus: why do you think this works? Discuss (30 secs.)
+    assert(strJoin(List("I am unique"), joiner = "-") === "I am unique")
+  }
 
-  test("sliding") { pending }
+  /**
+   * Immutable Maps
+   *
+   * Maps are collections where one value, the key, maps to another, the value.
+   * The types need not be the same.
+   *
+   * Scala guesses the type of the Map from the elements included.
+   *
+   * The quickest way to create a Map is like this:
+   *  val myMap = Map( key1 -> value1, key2 -> value2, ...)
+   *
+   * To access an element, you do like this:
+   *  myMap(key1)  // output: value1
+   *
+   * (the best way is with the "get" method shown below, but
+   * you can ignore that for now; it returns an Option, which you'll
+   * see, or saw, in another tutorial)
+   *
+   * You can add an element simply with "+".
+   * Example:
+   *  Map("a" -> 1, "b" -> 2) + ("c" -> 3)
+   * Or you can combine two maps like this:
+   *  Map("a" -> 1, "b" -> 2) ++ Map("c" -> 3, "d" -> 4)
+   *
+   * NOTE that you don't modify the existing map, you get a new one.
+   *
+   * You can ask all the keys of a Map with the "keys" method.
+   * Similarly, you can ask the values of a Map with... (that's right)
+   *
+   * Our friend Fred went for dinner at the pub, and then
+   * bought an ice-cream on the street. Change the code to reflect this.
+   * We also want to know the name of the items he consumed which have
+   * an "e" on it.
+   *
+   * HINT: filters the keys for the consumed items
+   * HINT: you can use the method "sum" to add a list of numbers
+   * Bonus: implement your own sum with "reduce"
+   *
+   */
+  test("immutable Maps") {
+    val atThePub = Map(
+      "pizza" -> 7.50,
+      "beer" -> 2.20,
+      "cafe" -> 3.40)
+    val pubAndStreet = atThePub // should involve "ice-cream" costing 2.30
+    val pubAndStreetCost = -1 // don't add manually! (you're a lazy developer, remember)
+
+    val consumedItemsWithE = List() // all things consumed in the pub and the street
+
+    // Do not add ice-cream to "atThePub". Note that this map is immutable.
+    assert(atThePub.get("ice-cream") === None, "Ice-cream was not taken in the pub!")
+
+    assert(pubAndStreet.size === 4, "Consumed items should be 4")
+    assert(pubAndStreet("ice-cream") === 2.30, "Ice-Cream should cost 2.30")
+    assert(pubAndStreetCost === (2.30 + 3.40 + 2.20 + 7.50), "Total cost is wrong")
+
+    assert(consumedItemsWithE.toSet === Set("beer", "cafe", "ice-cream"))
+
+    // Extra bonus: find the most expensive price 
+    // HINT: use reduce and if
+    def mostExpensivePrice(items: Map[String, Double]): Double = ???
+    //assert(mostExpensivePrice(pubAndStreet) === 7.50)
+  }
 
 }
