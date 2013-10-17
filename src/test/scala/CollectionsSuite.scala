@@ -58,24 +58,29 @@ class CollectionsSuite extends FunSuite {
    *
    * The colon ":" points to the position the new element will
    * be added to the list.
-   *
-   * Complete the love-triangle to add drama to the story.
+   * 
+   * Consider the TDD cycle. We found a developer moving from
+   * "test/fail" to "implement/pass". We would like to illustrate
+   * what happened before and after that, which is: refactoring!
+   * 
+   * Create two collections, one with "refactor" at the beginning
+   * and the other with "refactor" at the end. 
    */
-  test("appending an element to an immutable list") {
-    val couple = List("Scott Summers", "Jean Grey")
-    val loganLast = couple // append "Logan" to the "couple" collection
-    val loganFirst = couple // prepend "Logan" to the "couple" collection
+  test("adding an element to an immutable list") {
+    val incompleteTdd = List("test/fail", "implement/pass")
+    val refactorLast = "refactor"  // append "refactor" 
+    val refactorFirst = "refactor" // prepend "refactor"
 
-    // Note that original "couple" collection was not modified!
-    assert(couple.size === 2, "The original couple should still contain 2 members")
+    // Note that original "incompleteTdd" collection was not modified!
+    assert(incompleteTdd.size === 2, "The original tdd collection should contain 2 elements")
 
     // Instead, *new* collections were returned
+    
+    assert(refactorLast.size === 3, "TDD consists of 3 steps")
+    assert(refactorLast(2) === "refactor", "Should end with 'refactor'")
 
-    assert(loganLast.size === 3, "A love triangle should have 3 persons")
-    assert(loganLast(2) === "Logan", "Should end with Logan")
-
-    assert(loganFirst.size === 3, "A love triangle should have 3 persons")
-    assert(loganFirst.head === "Logan", "Should start with Logan")
+    assert(refactorFirst.size === 3, "TDD consists of 3 steps")
+    assert(refactorFirst.head === "refactor", "Should start with 'refactor'")
   }
 
   /**
