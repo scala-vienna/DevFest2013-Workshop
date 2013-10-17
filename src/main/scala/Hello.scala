@@ -3,3 +3,7 @@ object Hello {
     println("Hello, world!")
   }
 }
+
+object HelloAgain extends App {
+  println("Hello, again!")
+}
