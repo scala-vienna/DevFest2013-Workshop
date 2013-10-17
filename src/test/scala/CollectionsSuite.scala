@@ -68,8 +68,8 @@ class CollectionsSuite extends FunSuite {
    */
   test("adding an element to an immutable list") {
     val incompleteTdd = List("test/fail", "implement/pass")
-    val refactorLast = "refactor"  // append "refactor" 
-    val refactorFirst = "refactor" // prepend "refactor"
+    val refactorLast = incompleteTdd  // append "refactor" 
+    val refactorFirst = incompleteTdd // prepend "refactor"
 
     // Note that original "incompleteTdd" collection was not modified!
     assert(incompleteTdd.size === 2, "The original tdd collection should contain 2 elements")
