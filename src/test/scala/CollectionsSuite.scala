@@ -3,14 +3,6 @@ import org.scalatest.FunSuite
 class CollectionsSuite extends FunSuite {
 
   /**
-   * What do you think an empty list is written?
-   */
-  test("empty list") {
-    val emptyList = List(???) // fix this
-    assert(emptyList.isEmpty, "List should be empty")
-  }
-
-  /**
    * Simple example to show a simple list.
    *
    * Can you correct the list so that it satisfies the conditions?
@@ -19,6 +11,8 @@ class CollectionsSuite extends FunSuite {
     val list = List(0) // fix
 
     assert(list.size === 3, "List should have 3 elements")
+    
+    // Notice how we access the first element and the rest of the list
     assert(list.head === 1, "First element should be 1")
     assert(list.tail === List(2, 3), "Elements past first one should be 2,3")
   }
@@ -32,7 +26,7 @@ class CollectionsSuite extends FunSuite {
    *  println(skywalkers(1))  // output: "Leia"
    *
    * Can you get the correct flavors?
-   * Bonus: access the first element using a special method (see above)
+   * Bonus: access the first element using "head"
    */
   test("accessing elements") {
     val flavors = List("Banana", "Strawberry", "Chocolate", "Vanilla")
@@ -141,7 +135,7 @@ class CollectionsSuite extends FunSuite {
     // Note that original Sets are immutable (not changed)
     assert(years.size === 4, "Original years should be 4")
 
-    // Assertions on new Sets
+    // Assertions on *new* Sets
     assert(yearsUpTo2015.size === 6)
     assert(yearsUpTo2015.contains(2015), "Should include the year 2015")
     assert(!without2015.contains(2015), "Should NOT include the year 2015")
@@ -268,9 +262,9 @@ class CollectionsSuite extends FunSuite {
         "superman@solitude.com",
         "heman@grayskull.com")
     val domains = emails.map { e =>
-      ??? // fix
+      ??? // implement
     }
-    val bases = domains.map(d => ???) // fix
+    val bases = domains.map(d => ???) // implement
 
     assert(List("batcave.com", "solitude.com", "grayskull.com") === domains)
     assert(List("batcave", "solitude", "grayskull") === bases)
