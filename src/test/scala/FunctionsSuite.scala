@@ -154,7 +154,7 @@ class FunctionsSuite extends FunSuite {
   def sum(f: Int => Int, a: Int, b: Int): Int = ???
 
   // We first define the identity function
-  def identity(n: Int) = ???
+  def identity(n: Int): Int = ???
 
   // The square(n) function we had already defined before
   
@@ -179,21 +179,25 @@ class FunctionsSuite extends FunSuite {
   test("anonymous functions") {
     assert(identity(1) === 1)
     // Replace "identity" with an anonymous function
-    assert(??? === 1)
+    val fn1: Int => Int = ???
+    assert(fn1(???) === 1)
 
     assert(square(2) === 4)
     // Do the same here with "square"
-    assert(??? === 4)
+    val fn2: Int => Int = ???
+    assert(fn2(???) === 4)
   }
 
   test("sum(f, a, b) does what it should with anonymous functions") {
     assert(sum(identity, 4, 5) === 9)
     // Replace "identity" with an anonymous function
-    assert(??? === 9)
+    val fn1: Int => Int = ???
+    assert(fn1(???) === 9)
 
     assert(sum(square, 4, 5) === 41)
     // Do the same here with "square"
-    assert(??? === 41)
+    val fn2: Int => Int = ???
+    assert(fn2(???) === 41)
   }
 
   /**
