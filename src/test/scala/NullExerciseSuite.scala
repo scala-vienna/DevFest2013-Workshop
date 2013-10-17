@@ -1,5 +1,5 @@
+import devfest.****
 import org.scalatest.FunSuite
-
 
 
 class NullExerciseSuite extends FunSuite {
@@ -50,17 +50,17 @@ class NullExerciseSuite extends FunSuite {
                    id: Int,
                    name: String,
                    age: Int,
-                   gender: Option[String]
+                   drivingLicence: Option[String]
                    )
 
   /**
    * Here is how you use value that is not null.
-   * Use "male" value here with Some instance
-   * and "null" for squirrel
+   * Use "B1" value here with Some instance
+   * and Scala "null" for squirrel
    */
   test("None is null and != null is Some") {
     val radim: Option[User] = Some(User(1, "Radim", 32, ???))
-    assert(radim.get.gender.isDefined)
+    assert(radim.get.drivingLicence.isDefined)
 
     val squirrel: Option[User] = Some(User(1, "Ice Age", 100, ???))
     assert(squirrel.isEmpty)
@@ -76,11 +76,11 @@ class NullExerciseSuite extends FunSuite {
    */
   object UserRepository {
     private val users = Map(
-      1 -> User(1, "Radim", 32, Some("male")),
-      2 -> User(2, "Ice Age Squirrel", 100, None),
-      3 -> User(3, "Bill", 55, Some("male")),
-      5 -> User(5, "Petra", 25, Some("woman")),
-      4 -> User(4, "David", 45, Some("male"))
+      1 -> User(1, "Username1", 32, Some("B1")),
+      2 -> User(2, "Username2", 100, None),
+      3 -> User(3, "Username3", 55, Some("B")),
+      5 -> User(5, "Username4", 25, Some("B1")),
+      4 -> User(4, "Username5", 45, Some("A1"))
     )
 
     def findById(id: Int): Option[User] = users.get(id)
@@ -99,23 +99,21 @@ class NullExerciseSuite extends FunSuite {
   test("user with id=2 should have undefined gender") {
     val user1 = UserRepository.findById(1)
     if (user1.isDefined) {
-      assert("Radim" === user1.get.name)
+      assert("Username1" === user1.get.name)
     }
     val user2 = UserRepository.findById(2)
-    assert("Gender not specified" === ???)
+    assert("Driving licence not specified" === ???)
   }
 
   /**
    * Here some examples with filtering.
    */
   test("filtering should return None or Some") {
-    assert(None == UserRepository.findById(1).filter(_.age > 40))
-   val id = UserRepository.findById(2)
-    val some = Some(id)
-    assert(some == UserRepository.findById(2).filter(_.age > 30))
-
+    assert(??? == UserRepository.findById(1).filter(_.age > 40))
+    val filter = UserRepository.findById(2).filter(_.age > 30)
+    assert(filter.isInstanceOf[****])
     // there isn't any user with id 100
-    assert(None ==UserRepository.findById(100).filter(_.age > 1))
+    assert(??? ==UserRepository.findById(100).filter(_.age > 1))
   }
 
   /**
@@ -123,13 +121,13 @@ class NullExerciseSuite extends FunSuite {
    *
    * Tip: use Console.out.println() and genders.mkString
    */
-  test("extract gender types from repository") {
-    val genders = for {
+  test("extract driving licence types from repository") {
+    val categories = for {
       user <- UserRepository.findAll
-      gender <- user.gender
-    } yield gender
+      category <- user.drivingLicence
+    } yield category
 
 
-    assert(??? == genders.size)
+    assert(??? == categories.size)
   }
 }
