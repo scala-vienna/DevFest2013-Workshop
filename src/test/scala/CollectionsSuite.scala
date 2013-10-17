@@ -3,7 +3,7 @@ import org.scalatest.FunSuite
 class CollectionsSuite extends FunSuite {
 
   /**
-   * What do you thing an empty list is written?
+   * What do you think an empty list is written?
    */
   test("empty list") {
     val emptyList = List(???) // fix this
