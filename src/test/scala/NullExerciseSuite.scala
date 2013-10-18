@@ -31,7 +31,7 @@ class NullExerciseSuite extends FunSuite {
    * Tip: if you use === operator, you see not only that test failed
    * but also concrete values that were not equal
    */
-  test(" 2 + 2 - 1 + 2 - 3 + 4 - 3 sums to 4") {
+  test(" 2 + 2 - 1 + 2 - 3 + 4 - 3 sums to 3") {
     val i = 2 + 2 - 1 + 2 - 3 + 4 - 3
     assert(i === 5)
   }
