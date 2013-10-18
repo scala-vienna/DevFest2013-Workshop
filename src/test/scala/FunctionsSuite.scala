@@ -75,10 +75,13 @@ class FunctionsSuite extends FunSuite {
    *
    * Notes: you can use curly braces when you have more than one 
    * expression in the body of a function.
+   *
+   * Do not forget to have sum as last statement!
    */
   def sumIntsIter(a: Int, b: Int): Int = {
     var sum = 0
     ???
+	sum
   }
 
   test("sumIntsIter(a, b) does what it should") {
