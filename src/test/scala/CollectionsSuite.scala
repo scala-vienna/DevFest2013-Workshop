@@ -159,11 +159,11 @@ class CollectionsSuite extends FunSuite {
    */
   test("filtering a range for even numbers") {
     val numbers = (1 to 8)
-    val evenNrs = numbers.filter(n => n % 3 == 0) // fix
+    val evenNrs = numbers.filter(n => n % 3 == 1) // fix
 
     assert(evenNrs.size === 4, "Should find 4 even numbers")
-    assert(evenNrs.contains(1), "Should contain 1")
-    assert(!evenNrs.contains(2), "Should not contain 2")
+    assert(!evenNrs.contains(1), "Should not contain 1")
+    assert(evenNrs.contains(2), "Should contain 2")
   }
 
   /**
