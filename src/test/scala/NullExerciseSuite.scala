@@ -69,7 +69,7 @@ class NullExerciseSuite extends FunSuite {
 
   /**
    * Let's code something more difficult.
-   * We have map of users (see how Scala elegant is?)
+   * We have map of users (see how elegant Scala is?)
    * and we have two methods.
    *
    * findById may and may not return values.
