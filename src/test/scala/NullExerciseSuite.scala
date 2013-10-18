@@ -31,7 +31,7 @@ class NullExerciseSuite extends FunSuite {
     assert(radim.get.drivingLicence.isDefined)
 
     val squirrel: Option[User] = Some(User(1, "Ice Age", 100, ???))
-    assert(squirrel.isEmpty)
+    assert(squirrel.get.drivingLicence.isEmpty)
   }
 
 
@@ -64,7 +64,7 @@ class NullExerciseSuite extends FunSuite {
    * value is not defined from <code>user2</code2>.
    * Use http://www.scala-lang.org/api/current/index.html#scala.Option
    */
-  test("user with id=2 should have undefined gender") {
+  test("user with id=2 should have undefined driving license") {
     val user1 = UserRepository.findById(1)
     if (user1.isDefined) {
       assert("Username1" === user1.get.name)
