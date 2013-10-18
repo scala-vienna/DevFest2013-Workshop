@@ -119,8 +119,8 @@ class ClassesAndObjectsSuite extends FunSuite {
     def skillsLearned() = {
       for (i <- 1 to 100) yield { // example of for loop, it's expression
         codesIn * i
-      }.toList
-    }
+      }
+    }.toList
   }
 
   /**
@@ -153,7 +153,7 @@ class ClassesAndObjectsSuite extends FunSuite {
    * accessor is generated.
    */
   class FamousGeekyCoder(firstName: String, val lastName: String, var age: Int) extends GeekyCoder {
-    val fullName = if (firstName != lastName) firstName else firstName + lastName // expression, part of default constructor
+    val fullName = if (firstName == lastName) firstName else firstName + lastName // expression, part of default constructor
     println("And " + fullName + " geeky coder was born...")                       // part of default constructor, too
     
     var nickname: String = _  // initialization of variables and values is mandatory, _ means default value, in this case null
@@ -175,7 +175,7 @@ class ClassesAndObjectsSuite extends FunSuite {
     val linus = new FamousGeekyCoder("Linus", "Torvalds", 42)
     linus.age += 1
 
-    assert(linus.fullName === linus.lastName + ???)
+    assert(linus.fullName === "" + ??? + linus.lastName)
     assert(linus.age === ???)
   }
 
