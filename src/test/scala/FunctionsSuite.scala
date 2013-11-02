@@ -59,7 +59,7 @@ class FunctionsSuite extends FunSuite {
    * You will then need to convert the result to an Int which
    * is usually done with .toInt
    */
-  def power(base: Int, exponent: Int): Int = ???
+  def power(base: Int, exponent: Int): Int = Math.pow(base, exponent).toInt
 
   test("power(base, exponent) does what it should") {
     assert(power(2, 4) === 16)
@@ -86,8 +86,10 @@ class FunctionsSuite extends FunSuite {
    */
   def sumIntsIter(a: Int, b: Int): Int = {
     var sum = 0
-    ???
-	sum
+    for (i <- a to b) {
+      sum = sum + i
+    }
+  	sum
   }
 
   test("sumIntsIter(a, b) does what it should") {
@@ -107,7 +109,7 @@ class FunctionsSuite extends FunSuite {
    *        |-|-|-|-|-|-|-|-|-|-|-|
    *           a       b        
    */
-  def sumInts(a: Int, b: Int): Int = ???
+  def sumInts(a: Int, b: Int): Int = if (a > b) 0 else a + sumInts(a + 1, b)
 
   test("sumInts(a, b) does what it should") {
     assert(sumInts(1, 3) === 6)
@@ -148,7 +150,7 @@ class FunctionsSuite extends FunSuite {
    *
    * Note: think again about the base case as before!
    */
-  def sumSquares(a: Int, b: Int): Int = ???
+  def sumSquares(a: Int, b: Int): Int = if (a > b) 0 else square(a) + sumSquares(a + 1, b)
 
   test("sumSquares(a, b) does what it should") {
     assert(sumSquares(1, 3) === 14)
@@ -188,13 +190,13 @@ class FunctionsSuite extends FunSuite {
    * indicate the f is a function that takes one Int argument and
    * returns an Int!
    */
-  def sum(f: Int => Int, a: Int, b: Int): Int = ???
+  def sum(f: Int => Int, a: Int, b: Int): Int = if (a > b) 0 else f(a) + sum(f, a + 1, b)
 
   /*
    * Since we had not defined yet the identity function, we do
    * it now here to be able to write our tests afterwards
    */
-  def identity(n: Int): Int = ???
+  def identity(n: Int): Int = n
 
   /*
    * The square(n) function we had already defined before
@@ -202,8 +204,8 @@ class FunctionsSuite extends FunSuite {
   
   // Now you can complete the tests below
   test("sum(f, a, b) does what it should") {
-    assert(sum(???, 1, 3) === 6)
-    assert(sum(???, 1, 3) === 14)
+    assert(sum(identity, 1, 3) === 6)
+    assert(sum(square, 1, 3) === 14)
   }
 
   /**
@@ -225,13 +227,13 @@ class FunctionsSuite extends FunSuite {
      * Uncomment the test below and replace "identity" with an
      * anonymous function that does the same
      */
-    //assert(??? === 1)
+    assert(((n: Int) => n)(1) === 1)
 
     assert(square(2) === 4)
     /*
      * Do the same here with "square"
      */
-    //assert(??? === 4)
+    assert(((n: Int) => n * n)(2) === 4)
   }
 
   test("sum(f, a, b) does what it should with anonymous functions") {
@@ -240,13 +242,13 @@ class FunctionsSuite extends FunSuite {
      * Uncomment the test below and replace "identity" with an
      * anonymous function that does the same
      */
-    //assert(??? === 9)
+    assert(sum((n: Int) => n, 4, 5) === 9)
 
     assert(sum(square, 4, 5) === 41)
     /*
      * Do the same here with "square"
      */
-    //assert(??? === 41)
+    assert(sum((n: Int) => n * n, 4, 5) === 41)
   }
 
   /**
