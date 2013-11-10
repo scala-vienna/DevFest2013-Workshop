@@ -25,7 +25,7 @@ class PatMatSuite extends FunSuite {
     num match {
       case 1 => "one"
       case 2 => "two"
-      // TODO insert missing case
+      case 3 => "three"
     }
   }
 
@@ -66,7 +66,7 @@ class PatMatSuite extends FunSuite {
     someObject match {
       case s: String => "String '" + s + "'"
       case u: User => "User with name " + u.name
-      // TODO insert missing case which should return a String saying 'Address with city ...'
+      case a: Address => s"Address with city ${a.city}" // Scala also provides String interpolation
       case _ => "unknown"
     }
   }
@@ -97,7 +97,7 @@ class PatMatSuite extends FunSuite {
       this match {
         case Num(n) => n
         case Add(e1, e2) => e1.eval + e2.eval
-        // TODO fill in missing case
+        case Sub(e1, e2) => e1.eval - e2.eval
       }
     }
   }
@@ -131,7 +131,7 @@ class PatMatSuite extends FunSuite {
     book match {
       case Book("Game of Thrones", _, _) => "Winter is coming"
       case Book(_, _, pages) if pages > 1000 => "This is a really long book!"
-      // TODO fill in missing case
+      case Book("1984", "George Orwell", _) => "Big Brother is Watching You"
       case _ => "you should read more books"
     }
   }
